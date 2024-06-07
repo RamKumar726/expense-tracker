@@ -112,9 +112,9 @@ export default function Addexpense() {
         
     const totalMoney = () =>{
         let sumMoney = 0;
-        items.map((item:Item) =>{
-            sumMoney= sumMoney+ Number(item.money);
-        })
+        items.forEach((item: Item) => {
+            sumMoney = sumMoney + Number(item.money);
+        });
         setMoneyspent(sumMoney);
     }
 
@@ -132,7 +132,7 @@ export default function Addexpense() {
    
     const deleteItem = async(itemId:string) =>{
         await deleteDoc(doc(db , 'items' , itemId) );
-        setItemArray(items.filter((item)=>item.id != itemId));
+        setItemArray(items.filter((item)=>item.id !== itemId));
         toast.warning("Deleted SuccessFully")
 
     }
@@ -154,7 +154,7 @@ export default function Addexpense() {
         if(user){
             toast.success("login on account "+user.email)
         }
-    },[])
+    },[user])
 
 
 
@@ -311,7 +311,7 @@ export default function Addexpense() {
     <dl className="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
       <dt className="text-base font-medium text-gray-500 dark:text-gray-400">Money </dt>
       <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-        <a href="#" className="hover:underline">{item.money}</a>
+        <p  className="hover:underline">{item.money}</p>
       </dd>
     </dl>
 

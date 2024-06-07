@@ -33,7 +33,6 @@ export default function Analysis() {
     const [chartData, setChartData] = useState<any>(null);
     const [user] = useAuthState(auth);
     const [items, setItemArray] = useState<Item[]>([]);
-    const [perioditems, setPeriodItemArray] = useState<Item[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [budgetData, setBudget] = useState<Budget>({ budget: 0 });
     const [moneyspent , setMoneyspent] = useState<number>(0)
@@ -89,13 +88,13 @@ export default function Analysis() {
             setItemArray(itemsArray);
             setLoading(false);
             console.log("Fetched Items:", itemsArray);
-            if(timeFrame =='monthly'){
+            if(timeFrame ==='monthly'){
                 let spent = 0;
-            itemsArray.map((item:Item)=>{
-                spent  = spent + Number(item.money);
+                itemsArray.forEach((item: Item) => {
+                    spent += Number(item.money);
+                });
+                setMoneyspent(spent);
 
-            })
-            setMoneyspent(spent)
             }
         } catch (error) {
             console.error("Error fetching items:", error);
@@ -218,7 +217,7 @@ export default function Analysis() {
     useEffect(() => {
         fetchBudget();
         
-    }, []);
+    }, [user]);
 
 
 
@@ -291,7 +290,7 @@ export default function Analysis() {
             <dl className="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
               <dt className="text-base font-medium text-gray-500 dark:text-gray-400">Money </dt>
               <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                <a href="#" className="hover:underline">{item.money}</a>
+                <p  className="hover:underline">{item.money}</p>
               </dd>
             </dl>
 
