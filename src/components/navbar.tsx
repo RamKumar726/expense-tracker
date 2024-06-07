@@ -80,7 +80,7 @@ export default function Navbar(){
             <body className="bg-blue-500">
 	        <nav className="relative px-4 py-4 flex justify-between items-center bg-slate-200 border-x-slate-400">
 		<a className="text-3xl font-bold leading-none" href="/">
-			<img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvwSo_IDWBaLemSkxPL7o142JAUYhO0guthg&s' width="40px" height="40px" style={{borderRadius: "50%"}}></img>
+			<img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvwSo_IDWBaLemSkxPL7o142JAUYhO0guthg&s' alt='logo' width="40px" height="40px" style={{borderRadius: "50%"}}></img>
 		</a>
 		<div className="lg:hidden">
 			<button className="navbar-burger flex items-center text-blue-600 p-3">
@@ -127,7 +127,7 @@ export default function Navbar(){
 		<div className="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
 		<nav className="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
 			<div className="flex items-center mb-8">
-				<a className="mr-auto text-3xl font-bold leading-none" href="#">
+				<a className="mr-auto text-3xl font-bold leading-none" href="/">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvwSo_IDWBaLemSkxPL7o142JAUYhO0guthg&s" alt="Logo" width="40px" height="40px" />
 				</a>
 				<button className="navbar-close">

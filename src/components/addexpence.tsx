@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState ,useCallback } from "react";
 import { collection , addDoc, query, where ,getDocs , deleteDoc, doc  } from "firebase/firestore";
 import { db , auth } from "../config/firebase"
 import {useAuthState} from 'react-firebase-hooks/auth'
@@ -73,7 +73,7 @@ export default function Addexpense() {
     };
 
 
-    const fetchItems = async (transactionType: "all" | "Cash" | "UPI" | "Card" = "all") => {
+    const fetchItems = useCallback(async (transactionType: "all" | "Cash" | "UPI" | "Card" = "all") => {
         if (!user) {
             console.error("User is not authenticated");
             return;
@@ -109,15 +109,19 @@ export default function Addexpense() {
             console.error("Error fetching items:", error);
             setLoading(false);
         }
-    };
-        
-    const totalMoney = () =>{
-        let sumMoney = 0;
-        items.forEach((item: Item) => {
-            sumMoney = sumMoney + Number(item.money);
-        });
-        setMoneyspent(sumMoney);
-    }
+    }, [user, setItemArray, setLoading]);
+
+    useEffect(() => {
+        const totalMoney = () => {
+            let sumMoney = 0;
+            items.forEach((item: Item) => {
+                sumMoney = sumMoney + Number(item.money);
+            });
+            setMoneyspent(sumMoney);
+        };
+    
+        totalMoney();
+    }, [items, setMoneyspent]);
 
 
 
@@ -127,9 +131,6 @@ export default function Addexpense() {
         }
     }, [user, fetchItems, items]);
     
-    useEffect(() => {
-        totalMoney();
-    }, [items, totalMoney]);
     
     
     

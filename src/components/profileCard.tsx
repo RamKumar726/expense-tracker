@@ -1,19 +1,13 @@
-import { addDoc, collection  , getDoc , getDocs, query, updateDoc, where} from 'firebase/firestore';
-import { auth, db } from '../config/firebase';
-import {useAuthState} from 'react-firebase-hooks/auth'
-import { useEffect, useState } from 'react';
-
-interface Props{
-    name: string,
-    phtoturl: string,
-    userMoney: number,
+// // import {  collection  , getDocs, query, where} from 'firebase/firestore';
+// import { auth } from '../config/firebase';
+// import {useAuthState} from 'react-firebase-hooks/auth'
+// import { useEffect, useState } from 'react';
 
 
-}
 
-interface Budget {
-    budget: number;
-}
+// interface Budget {
+//     budget: number;
+// }
 
 
 
@@ -22,41 +16,9 @@ interface Budget {
 
 
 export default function ProfileCard({name="" , phtoturl="" , userMoney=0}){
-    const [budgetData, setBudget] = useState<Budget>({ budget: 0 });
-    const [isEditMode, setIsEditMode] = useState(false);
-    const[user] = useAuthState(auth)
-    const fetchBudget = async () => {
-        if (user) {
-            const currentMonth = new Date().getMonth() + 1; 
-            const currentYear = new Date().getFullYear();
+    // const[user] = useAuthState(auth)
     
-            const budgetQuery = query(
-                collection(db, "budget"),
-                where("uid", "==", user.uid),
-                where("month", "==", currentMonth),
-                where("year", "==", currentYear)
-            );
     
-            try {
-                const querySnapshot = await getDocs(budgetQuery);
-                if (!querySnapshot.empty) {
-                    querySnapshot.forEach((doc) => {
-                        setBudget(doc.data() as Budget);
-                    });
-                    setIsEditMode(true); 
-                } else {
-                    setBudget({ budget: 0 });
-                    setIsEditMode(false); 
-                }
-            } catch (error) {
-                console.error("Error fetching budget: ", error);
-            }
-        }
-    };
-
-    useEffect(()=>{
-        fetchBudget()
-    }, [user])
     
     return(
         <div

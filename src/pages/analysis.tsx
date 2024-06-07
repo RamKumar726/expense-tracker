@@ -162,7 +162,7 @@ export default function Analysis() {
                 ]
             }]
         });
-    }, [items]);
+    }, [items , budgetData.budget]);
 
     useEffect(()=>{
         fetchItems();

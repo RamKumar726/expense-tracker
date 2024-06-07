@@ -159,12 +159,12 @@ const YearMonthForm: React.FC = () => {
             setPeriodItemArray(itemsArray);
             setLoading(false);
             console.log("2024", itemsArray);
-            let Spent = 0;
-            itemsArray.map((item:Item)=>{
-                Spent = Spent+Number(item.money);
-            })
-            setMoneyspent(Spent)
-            console.log("The spent: ",Spent)
+            let spent = 0;
+itemsArray.forEach((item: Item) => {
+    spent += Number(item.money);
+});
+setMoneyspent(spent);
+            console.log("The spent: ",spent)
 
             console.log("spent: ",moneyspent)
 
@@ -268,7 +268,7 @@ const YearMonthForm: React.FC = () => {
                                         <dl className="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
                                             <dt className="text-base font-medium text-gray-500 dark:text-gray-400">Money</dt>
                                             <dd className="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-                                                <a href="#" className="hover:underline">{item.money}</a>
+                                                <p  className="hover:underline">{item.money}</p>
                                             </dd>
                                         </dl>
                                         <dl className="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">

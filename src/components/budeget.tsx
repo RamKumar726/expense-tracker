@@ -4,7 +4,7 @@ import { auth, db } from '../config/firebase';
 import {useAuthState} from 'react-firebase-hooks/auth'
 import { useNavigate } from "react-router-dom";
 import { startOfMonth, endOfMonth } from 'date-fns';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
@@ -26,10 +26,9 @@ export interface Item{
 
 
 
-export default function Budget(){
+export default function BudgetForm(){
     const navigate  = useNavigate();
     const [budgetData, setBudget] = useState<Budget>({ budget: 0 });
-    const [isEditMode, setIsEditMode] = useState(false);
     const budgetRef = collection(db, "budget");
     const [user] = useAuthState(auth)
 
@@ -80,7 +79,6 @@ export default function Budget(){
             setBudget({
                 budget: 0,
             });
-            setIsEditMode(true);
             navigate('/');
         } catch (error) {
             console.error("Error adding/updating document: ", error);
@@ -88,33 +86,34 @@ export default function Budget(){
     };
     
    
-    const fetchBudget = async () => {
-        if (user) {
-            const budgetQuery = query(
-                collection(db, "budget"),
-                where("uid", "==", user.uid)
-            );
-            try {
-                const querySnapshot = await getDocs(budgetQuery);
-                querySnapshot.forEach((doc) => {
-                    setBudget(doc.data() as Budget);
-                });
-                setIsEditMode(querySnapshot.empty); // Hide edit button if no budget data found
-                console.log(budgetData.budget)
-            } catch (error) {
-                console.error("Error fetching budget: ", error);
-            }
-        }
-    };
+    
 
 
     useEffect(() => {  
+        const fetchBudget = async () => {
+            if (user) {
+                const budgetQuery = query(
+                    collection(db, "budget"),
+                    where("uid", "==", user.uid)
+                );
+                try {
+                    const querySnapshot = await getDocs(budgetQuery);
+                    querySnapshot.forEach((doc) => {
+                        setBudget(doc.data() as Budget);
+                    });
+                    console.log(budgetData.budget)
+                } catch (error) {
+                    console.error("Error fetching budget: ", error);
+                }
+            }
+        };
+    
         fetchBudget();
     }, [user]);
+    
 
     const handleEdit = async () => {
         try {
-            // Get the start and end of the current month
             const now = new Date();
             const start = startOfMonth(now);
             const end = endOfMonth(now);
@@ -134,7 +133,6 @@ export default function Budget(){
             querySnapshot.forEach((doc) => {
                 setBudget(doc.data() as Budget);
             });
-            setIsEditMode(true); 
         } catch (error) {
             console.error("Error fetching budget data: ", error);
         }
