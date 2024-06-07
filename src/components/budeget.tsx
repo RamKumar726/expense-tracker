@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Timestamp, addDoc, collection  , getDoc , getDocs, query, updateDoc, where} from 'firebase/firestore';
+import { Timestamp, addDoc, collection   , getDocs, query, updateDoc, where} from 'firebase/firestore';
 import { auth, db } from '../config/firebase';
 import {useAuthState} from 'react-firebase-hooks/auth'
 import { useNavigate } from "react-router-dom";
@@ -29,13 +28,11 @@ export interface Item{
 
 export default function Budget(){
     const navigate  = useNavigate();
-    const [activeTab, setActiveTab] = useState("stats");
     const [budgetData, setBudget] = useState<Budget>({ budget: 0 });
     const [isEditMode, setIsEditMode] = useState(false);
     const budgetRef = collection(db, "budget");
     const [user] = useAuthState(auth)
-    const [items , setItems] = useState<Item[]>([])
-    const [spentMoney , setMoneyspent] = useState<number>(0);
+
 
 
     const handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {

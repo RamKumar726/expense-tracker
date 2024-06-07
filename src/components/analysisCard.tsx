@@ -1,16 +1,10 @@
 
 
-interface Props{
-    moneyspent: number;
-    budget: number;
-    moneyremian: number;
-}
 
 
 
 export default function AnalysisCard({moneyspent=0 , budget=1, moneyremian=0 }){
     let per =(moneyspent/budget)*100;
-    // let per = 70;
     const getBackgroundColor = (per:any) => {
         if (per <= 50) {
           return 'green';

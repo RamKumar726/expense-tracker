@@ -103,6 +103,7 @@ export default function Addexpense() {
             })) as unknown as Item[];
     
             setItemArray(itemsArray);
+            console.log(itemsArray)
             setLoading(false);
         } catch (error) {
             console.error("Error fetching items:", error);
@@ -120,15 +121,18 @@ export default function Addexpense() {
 
 
 
-    useEffect(()=>{
-        if(user){
+    useEffect(() => {
+        if (user && !items.length) {
             fetchItems('all');
         }
-    } , [user])
-
-    useEffect(()=>{
+    }, [user, fetchItems, items]);
+    
+    useEffect(() => {
         totalMoney();
-    } , [items])
+    }, [items, totalMoney]);
+    
+    
+    
    
     const deleteItem = async(itemId:string) =>{
         await deleteDoc(doc(db , 'items' , itemId) );
@@ -149,12 +153,6 @@ export default function Addexpense() {
         console.log('Selected filter type:', filter.filtertype);
         fetchItems(filter.filtertype);
     };
-
-    useEffect(()=>{
-        if(user){
-            toast.success("login on account "+user.email)
-        }
-    },[user])
 
 
 
