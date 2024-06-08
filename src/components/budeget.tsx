@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState , useCallback } from "react";
 import { Timestamp, addDoc, collection   , getDocs, query, updateDoc, where} from 'firebase/firestore';
 import { auth, db } from '../config/firebase';
 import {useAuthState} from 'react-firebase-hooks/auth'
@@ -85,31 +85,32 @@ export default function BudgetForm(){
         }
     };
     
-   
-    
-
-
-    useEffect(() => {  
-        const fetchBudget = async () => {
-            if (user) {
-                const budgetQuery = query(
-                    collection(db, "budget"),
-                    where("uid", "==", user.uid)
-                );
-                try {
-                    const querySnapshot = await getDocs(budgetQuery);
-                    querySnapshot.forEach((doc) => {
-                        setBudget(doc.data() as Budget);
-                    });
-                    console.log(budgetData.budget)
-                } catch (error) {
-                    console.error("Error fetching budget: ", error);
-                }
+    const fetchBudget = useCallback(async () => {
+        if (user) {
+            const budgetQuery = query(
+                collection(db, "budget"),
+                where("uid", "==", user.uid)
+            );
+            try {
+                const querySnapshot = await getDocs(budgetQuery);
+                querySnapshot.forEach((doc) => {
+                    setBudget(doc.data() as Budget);
+                });
+                console.log(budgetData.budget)
+            } catch (error) {
+                console.error("Error fetching budget: ", error);
             }
-        };
-    
-        fetchBudget();
-    }, [user]);
+        }
+    },[user , budgetData.budget]);
+
+    useEffect(()=>{
+       setInterval(fetchBudget , 10000)
+    } , [fetchBudget])
+
+
+    // useEffect(() => {  
+    //     setInterval(fetchBudget, 10000)
+    // }, [user ,budgetData ,fetchBudget ]);
     
 
     const handleEdit = async () => {

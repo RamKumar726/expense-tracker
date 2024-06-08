@@ -29,7 +29,7 @@ function Login(){
                     <img
                     src="https://tecdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
                     className="w-full"
-                    alt="Image" />
+                    alt="logo" />
                 </div>
 
                 <div className="md:w-8/12 lg:ms-6 lg:w-5/12">

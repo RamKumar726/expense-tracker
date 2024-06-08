@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db, auth } from "../config/firebase";
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -39,7 +39,7 @@ export default function Analysis() {
 
 
 
-    const fetchItems = async (timeFrame: "daily" | "weekly" | "monthly" = "monthly") => {
+    const fetchItems = useCallback(async (timeFrame: "daily" | "weekly" | "monthly" = "monthly") => {
         if (!user) {
             console.error("User is not authenticated");
             return;
@@ -100,7 +100,7 @@ export default function Analysis() {
             console.error("Error fetching items:", error);
             setLoading(false);
         }
-    };
+    },[user]);
 
 
 
@@ -166,7 +166,7 @@ export default function Analysis() {
 
     useEffect(()=>{
         fetchItems();
-    } , [user])
+    } , [user ,fetchItems ])
 
 
     const handleDaily = () =>{
@@ -186,7 +186,7 @@ export default function Analysis() {
 
     }
 
-    const fetchBudget = async () => {
+    const fetchBudget = useCallback(async () => {
     
         if (user) {
             const currentDate = new Date();
@@ -212,12 +212,12 @@ export default function Analysis() {
                 console.error("Error fetching budget: ", error);
             }
         }
-    };
+    },[user]);
     
     useEffect(() => {
         fetchBudget();
         
-    }, [user]);
+    }, [user , fetchBudget]);
 
 
 
