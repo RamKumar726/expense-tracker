@@ -1,5 +1,8 @@
 // import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
+
 export default function LandingPage(){
 
     return(
@@ -11,7 +14,9 @@ export default function LandingPage(){
             <div className="place-self-center mr-auto lg:col-span-7">
                 <h1 className="mb-4 max-w-2xl text-4xl font-extrabold leading-none md:text-5xl xl:text-6xl dark:text-white">Manage Your Expenses Anywhere in Real Time</h1>
                 <p className="mb-6 max-w-2xl font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400"><q>Watch Your Money Disappear Like Magic... Except You Know Where It Went!</q></p>
-                
+               
+
+
             </div>
             <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
                 <img src="https://img.freepik.com/premium-vector/digital-payment-service_213110-103.jpg" alt="mockup" />
@@ -66,16 +71,33 @@ export default function LandingPage(){
             </div>
         </div>
     </section>
-    <section className="bg-white dark:bg-gray-900">
-        <div className="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
-            <div className="mx-auto max-w-screen-sm text-center">
-                <h2 className="mb-4 text-4xl font-extrabold leading-tight text-gray-900 dark:text-white">Contact Us</h2>
-            <div className="grid grid-cols-2 gap-4 mt-8">
+    <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 sm:grid-cols-2 bg-blue-50 md:p-6 dark:bg-gray-800 ">
+            <div className="p-4 rounded-lg bg-blue-50 md:p-6 dark:bg-gray-800">
+                <span className="inline-block p-3 text-blue-500 rounded-lg bg-blue-100/80 dark:bg-gray-700">
+            <a href="https://wa.me/+916302568264?text=Hi...! Mr.YuvaRaj I Recently  visited your website.." className="text-green-700 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"><img src={`${process.env.PUBLIC_URL}/images/IMG_20240211_134014.jpg`} alt="Yuvaraj" style={{width: 150 , height: 180 , borderRadius: 5}} /></a>
 
-                </div>
+                </span>
+                <h2 className="mt-2 text-base font-medium text-gray-800 dark:text-white">Yuvaraj Chitikela</h2>
+                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Speak to our friendly team.</p>
+                <p className="mt-2 text-sm text-blue-500 dark:text-blue-400">yuvarajuchitikela000@gmail.com</p>
+                <a href="https://wa.me/+916302568264?text=Hi...! Mr.YuvaRaj I Recently  visited your website.." className="text-green-700 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">6302568264</a>
+
             </div>
+
+            <div className="p-4 rounded-lg bg-blue-50 md:p-6 dark:bg-gray-800">
+                <span className="inline-block p-3 text-blue-500 rounded-lg bg-blue-100/80 dark:bg-gray-700">
+            <a href="https://wa.me/+917702123692?text=Hi...! Mr.Ram kumar I Recently  visited your website.." className="text-green-700 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"><img src={`${process.env.PUBLIC_URL}/images/ram.jpg`} alt="Ram Kumar" style={{width: 150 , height: 180 , borderRadius: 5}} /></a>
+
+                </span>
+                <h2 className="mt-2 text-base font-medium text-gray-800 dark:text-white">Ram Kumar Kota</h2>
+                <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">Speak to our friendly team.</p>
+                <p className="mt-2 text-sm text-blue-500 dark:text-blue-400">ramkumarvalli143@gmail.com</p>
+                <a href="https://wa.me/+917702123692?text=Hi...! Mr.Ram kumar I Recently  visited your website.." className="text-green-700 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">7702123692</a>
+                
+            </div>
+
+            
         </div>
-    </section>     
 </body>
     )
 
